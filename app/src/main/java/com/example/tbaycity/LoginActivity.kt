@@ -26,10 +26,10 @@ class LoginActivity : AppCompatActivity() {
         loginBtn.setOnClickListener {
             val email = emailField.text.toString();
             val password = passwordField.text.toString();
-            if (email.length == 0){
+            if (email.isEmpty()){
                 emailField.error = "Email cannot be empty"
             }
-            else if (password.length == 0) {
+            else if (password.isEmpty()) {
 
                 passwordField.error = "Password cannot be empty"
             }
