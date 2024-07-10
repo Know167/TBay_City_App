@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "906366157045",
+    "project_id": "tbaycityapp",
+    "storage_bucket": "tbaycityapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906366157045:android:416a2cec244bb19be545bc",
+        "android_client_info": {
+          "package_name": "com.example.tbaycity"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPcn6MXPf-99dvlei-zNxPyr3KBIZnw1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
