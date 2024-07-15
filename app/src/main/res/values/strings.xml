@@ -4,5 +4,6 @@
     <string name="password">Password</string>
     <string name="username">Username</string>
     <string name="login">Login</string>
-
+    <string name="signup">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
