@@ -1,87 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <!-- Toolbar -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity"
+    android:orientation="vertical">
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:title="Home"
-        android:titleTextColor="@android:color/white"
-        android:subtitleTextColor="@android:color/white"/>
+        android:layout_weight="1"
+        android:id="@+id/frame_layout"
+        android:layout_height="match_parent">
 
-<!--    <androidx.viewpager2.widget.ViewPager2-->
-<!--        android:id="@+id/viewPager"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="200dp"-->
-<!--        android:layout_below="@id/toolbar"-->
-<!--        android:layout_marginTop="16dp"/>-->
-
-
-<!--    &lt;!&ndash; Grid of Icon Buttons &ndash;&gt;-->
-<!--    <GridLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@id/viewPager"-->
-<!--        android:columnCount="3"-->
-<!--        android:rowCount="2"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:padding="16dp">-->
-
-<!--        &lt;!&ndash; Icon Button 1 &ndash;&gt;-->
-<!--        <ImageButton-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_columnWeight="1"-->
-<!--            android:src="@drawable/baseline_location_city_24"-->
-<!--            android:background="?attr/selectableItemBackground"-->
-<!--            android:padding="16dp"-->
-<!--            android:scaleType="centerInside"-->
-<!--            android:onClick="onButton1Click"/>-->
-
-<!--        &lt;!&ndash; Icon Button 2 &ndash;&gt;-->
-<!--        <ImageButton-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_columnWeight="1"-->
-<!--            android:src="@drawable/baseline_location_city_24"-->
-<!--            android:background="?attr/selectableItemBackground"-->
-<!--            android:padding="16dp"-->
-<!--            android:scaleType="centerInside"-->
-<!--            android:onClick="onButton2Click"/>-->
-
-<!--        &lt;!&ndash; Icon Button 3 &ndash;&gt;-->
-<!--        <ImageButton-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_columnWeight="1"-->
-<!--            android:src="@drawable/baseline_location_city_24"-->
-<!--            android:background="?attr/selectableItemBackground"-->
-<!--            android:padding="16dp"-->
-<!--            android:scaleType="centerInside"-->
-<!--            android:onClick="onButton3Click"/>-->
-
-<!--        &lt;!&ndash; Icon Button 4 &ndash;&gt;-->
-<!--        <ImageButton-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_columnWeight="1"-->
-<!--            android:src="@drawable/baseline_location_city_24"-->
-<!--            android:background="?attr/selectableItemBackground"-->
-<!--            android:padding="16dp"-->
-<!--            android:scaleType="centerInside"-->
-<!--            android:onClick="onButton4Click"/>-->
-
-<!--        &lt;!&ndash; Add more icon buttons as needed &ndash;&gt;-->
-
-<!--    </GridLayout>-->
-</RelativeLayout>
-
-
-
-
-
+    </FrameLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottomNavView"
+        app:menu="@menu/bottom_nav_menu"
+        />
+</LinearLayout>

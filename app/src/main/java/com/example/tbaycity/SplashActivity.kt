@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+
 import com.google.firebase.auth.FirebaseAuth
 
 class SplashActivity : AppCompatActivity() {
@@ -19,10 +20,12 @@ class SplashActivity : AppCompatActivity() {
     private val handler = Handler(Looper.getMainLooper())
     private lateinit var auth: FirebaseAuth
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.splash_activity)
+
         loading = findViewById(R.id.loadingbar)
         loading.visibility = View.VISIBLE
         auth = FirebaseAuth.getInstance()
@@ -35,6 +38,7 @@ class SplashActivity : AppCompatActivity() {
                 }
                 Thread.sleep(10) // Simulate a time-consuming task
             }
+
             checkUserAuthentication()
         }.start()
     }
@@ -68,3 +72,4 @@ class SplashActivity : AppCompatActivity() {
         }, 100)
     }
 }
+
