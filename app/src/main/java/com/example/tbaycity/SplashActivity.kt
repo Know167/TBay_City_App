@@ -11,17 +11,25 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
+import com.google.firebase.auth.FirebaseAuth
+
 class SplashActivity : AppCompatActivity() {
-    private lateinit var loading:ProgressBar
+
+    private lateinit var loading: ProgressBar
     private var progressStatus = 0
     private val handler = Handler(Looper.getMainLooper())
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.splash_activity)
-        loading = findViewById<ProgressBar>(R.id.loadingbar)
+
+        loading = findViewById(R.id.loadingbar)
         loading.visibility = View.VISIBLE
+        auth = FirebaseAuth.getInstance()
+
         Thread {
             while (progressStatus < 100) {
                 progressStatus += 1
@@ -30,16 +38,38 @@ class SplashActivity : AppCompatActivity() {
                 }
                 Thread.sleep(10) // Simulate a time-consuming task
             }
-            launch_login()
+
+            checkUserAuthentication()
         }.start()
-
-
     }
-    private fun launch_login(){
+
+    private fun checkUserAuthentication() {
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            // User is signed in, navigate to HomeActivity
+            navigateToHome()
+        } else {
+            // User is not signed in, navigate to LoginActivity
+            launchLogin()
+        }
+    }
+
+    private fun launchLogin() {
         handler.postDelayed({
-            val intent = Intent(this,LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             loading.visibility = View.GONE
             startActivity(intent)
+            finish() // Optional: Close current activity to prevent going back
+        }, 100)
+    }
+
+    private fun navigateToHome() {
+        handler.postDelayed({
+            val intent = Intent(this, HomeActivity::class.java)
+            loading.visibility = View.GONE
+            startActivity(intent)
+            finish() // Optional: Close current activity to prevent going back
         }, 100)
     }
 }
+

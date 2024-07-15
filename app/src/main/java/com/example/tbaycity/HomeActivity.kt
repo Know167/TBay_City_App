@@ -1,39 +1,39 @@
 package com.example.tbaycity
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.Toast
+import android.widget.FrameLayout
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
-
-    private lateinit var logoutBtn: Button
-    private lateinit var auth: FirebaseAuth
-
+    private lateinit var bottomNavigationView:BottomNavigationView
+    private lateinit var framelayout:FrameLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_home)
+        bottomNavigationView = findViewById(R.id.bottomNavView)
+        framelayout = findViewById(R.id.frame_layout)
+        bottomNavigationView.setOnItemSelectedListener {item->
+            when(item.itemId){
+                R.id.navigation_home -> changeFragment(HomeFragment())
+                R.id.navigation_notifications -> changeFragment(NotificationFragment())
+                R.id.navigation_dashboard -> changeFragment(ProfileFragment())
 
-        auth = FirebaseAuth.getInstance()
+        }
+            true
 
-        // Initialize UI components
-        logoutBtn = findViewById(R.id.logoutBtn)
-
-        logoutBtn.setOnClickListener {
-            logoutUser()
         }
     }
-
-    private fun logoutUser() {
-        auth.signOut()
-        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
-
-        // Navigate back to LoginActivity or any other appropriate screen
-        val intent = Intent(this, LoginActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-        finish()
+    private fun changeFragment(fragment: Fragment){
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout,fragment)
+        fragmentTransaction.commit()
     }
 }
