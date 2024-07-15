@@ -7,6 +7,7 @@
 
     <style name="Theme.TBayCity" parent="Base.Theme.TBayCity" />
 
+
     <style name="Theme.TBayCity.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -15,4 +16,5 @@
     <style name="Theme.TBayCity.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.TBayCity.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
