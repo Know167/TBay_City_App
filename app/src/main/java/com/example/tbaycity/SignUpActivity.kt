@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var emailField: EditText
@@ -62,8 +63,25 @@ class SignUpActivity : AppCompatActivity() {
                     // Navigate to next activity or close this one
                     finish()
                 } else {
-                    Toast.makeText(baseContext, "Sign Up failed.", Toast.LENGTH_SHORT).show()
-                }
+                    val exception = task.exception
+                    if (exception is FirebaseAuthException) {
+                        when (exception.errorCode) {
+                            "ERROR_EMAIL_ALREADY_IN_USE" -> {
+                                Toast.makeText(baseContext, "Email already in use.", Toast.LENGTH_SHORT).show()
+                            }
+                            "ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL" -> {
+                                Toast.makeText(baseContext, "Account exists with different credential.", Toast.LENGTH_SHORT).show()
+                            }
+                            "ERROR_CREDENTIAL_ALREADY_IN_USE" -> {
+                                Toast.makeText(baseContext, "Credential already in use.", Toast.LENGTH_SHORT).show()
+                            }
+                            else -> {
+                                Toast.makeText(baseContext, "Sign Up failed: ${exception.localizedMessage}", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    } else {
+                        Toast.makeText(baseContext, "Sign Up failed.", Toast.LENGTH_SHORT).show()
+                    }                }
             }
     }
 }
