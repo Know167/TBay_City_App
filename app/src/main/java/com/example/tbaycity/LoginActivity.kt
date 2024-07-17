@@ -1,70 +1,69 @@
 package com.example.tbaycity
 
+
 import android.content.Intent
+
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+
 import android.widget.Toast
+
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
 import com.google.firebase.auth.FirebaseAuth
 
+
 class LoginActivity : AppCompatActivity() {
-    private lateinit var emailField: EditText
-    private lateinit var passwordField: EditText
-    private lateinit var loginBtn: Button
-    private lateinit var signupText: TextView
-    private lateinit var auth: FirebaseAuth
+    private lateinit var emailField:EditText;
+    private lateinit var passwordField:EditText;
+    private lateinit var loginBtn: Button;
+    private  lateinit var signupText:TextView;
+
+    private lateinit var firebaseAuth:FirebaseAuth;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_login)
-
-        auth = FirebaseAuth.getInstance()
-
-        emailField = findViewById(R.id.email)
-        passwordField = findViewById(R.id.password)
+        emailField = findViewById(R.id.email);
+        passwordField = findViewById(R.id.password);
         loginBtn = findViewById(R.id.loginbtn)
-        signupText = findViewById(R.id.signup)
+        signupText = findViewById(R.id.signup);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         loginBtn.setOnClickListener {
-            val email = emailField.text.toString()
-            val password = passwordField.text.toString()
-            if (email.isEmpty()) {
+            val email = emailField.text.toString();
+            val password = passwordField.text.toString();
+            if (email.isEmpty()){
                 emailField.error = "Email cannot be empty"
-            } else if (password.isEmpty()) {
+            }
+            else if (password.isEmpty()) {
+
+
                 passwordField.error = "Password cannot be empty"
-            } else {
-                loginUser(email, password)
+            }
+            else{
+
+                firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener { task->
+                    if(task.isSuccessful){
+                        Toast.makeText(this,"Login Successfull",Toast.LENGTH_LONG).show()
+                        val intent = Intent(this,HomeActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
             }
         }
-
         signupText.setOnClickListener {
+            // Navigate to SignUpActivity
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    private fun loginUser(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val user = auth.currentUser
-                    Toast.makeText(baseContext, "Authentication successful.", Toast.LENGTH_SHORT).show()
-
-                    // Navigate to home screen or next activity
-                    navigateToHome()
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
-
-    private fun navigateToHome() {
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
-        finish() // Optional: Call finish() to close LoginActivity after navigating to HomeActivity
     }
 }

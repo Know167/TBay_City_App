@@ -60,7 +60,8 @@ class SignUpActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     Toast.makeText(baseContext, "Sign Up successful.", Toast.LENGTH_SHORT).show()
-                    // Navigate to next activity or close this one
+                    var intent = Intent(this,HomeActivity::class.java)
+                    startActivity(intent)
                     finish()
                 } else {
                     val exception = task.exception
