@@ -26,6 +26,7 @@
             android:layout_marginBottom="30dp"
             android:contentDescription="Thunder Bay Logo"/>
 
+
         <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
@@ -137,6 +138,7 @@
             android:textColor="@color/black"
             android:fontFamily="@font/poppinsregular"
             android:layout_gravity="center"
+
             />
 
 </LinearLayout>
