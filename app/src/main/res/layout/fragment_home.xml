@@ -28,9 +28,10 @@
                 android:fontFamily="@font/poppinsbold"
                 android:text="@string/thunder_bay"/>
             <ImageButton
+
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-
+                android:id="@+id/profileIcon"
                 android:contentDescription="@string/profileimage"
                 android:src="@drawable/usericon"
 
@@ -186,6 +187,7 @@
             android:layout_height="196dp"
             android:clipChildren="false"
             android:clipToPadding="false" />
+
     </LinearLayout>
     </LinearLayout>
 </FrameLayout>
