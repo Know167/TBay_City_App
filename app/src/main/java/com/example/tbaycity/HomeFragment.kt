@@ -12,6 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.concurrent.Executors
 import android.os.Handler
@@ -27,8 +30,11 @@ class HomeFragment : Fragment() {
     private  lateinit var  firebaseFirestore: FirebaseFirestore
     private  lateinit var  firebaseUser: FirebaseUser
     private lateinit var viewallservice:TextView
-    private lateinit var firestore: FirebaseFirestore
-    private lateinit var eventImage: ImageView
+    private lateinit var carouselRecyclerView: RecyclerView
+    private lateinit var carouselAdapter: CarouselAdapter
+    private val firestore = FirebaseFirestore.getInstance()
+    private val carouselItems = mutableListOf<CarouselItem>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +50,8 @@ class HomeFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         val  view:View = inflater.inflate(R.layout.fragment_home, container, false)
         viewallservice = view.findViewById(R.id.viewAllService)
-        eventImage = view.findViewById(R.id.eventImage)
+        carouselRecyclerView = view.findViewById(R.id.carousel_recycler_view)
+//
 
         val profileIcon = view.findViewById<ImageView>(R.id.profileIcon)
 
@@ -61,43 +68,42 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity,CityServices::class.java)
             startActivity(intent)
         }
-        fetchDataFromFirestore()
+
+        carouselRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        carouselAdapter = CarouselAdapter(carouselItems)
+        carouselRecyclerView.adapter = carouselAdapter
+
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(carouselRecyclerView)
+        fetchCarouselItems()
+
         return view
     }
-
-    private fun fetchDataFromFirestore() {
-        // Replace "yourCollection" with the actual collection name you want to fetch data from
-
+    private fun fetchCarouselItems(){
         firestore.collection("events")
+            .limit(5)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    Log.d("HomeFragment", "${document.id} => ${document.data["eventImageURL"]}")
-                    val imageURL = document.data["eventImageURL"].toString()
-                    // Update your UI with the data here
-                    val executor = Executors.newSingleThreadExecutor()
-                    val handler = Handler(Looper.getMainLooper())
+                    val title=document.getString("title")
+                    val description=document.getString("description")
+                    val imgUrl=document.getString("eventImageURL")
 
-                    // Initializing the image
-                    var image: Bitmap? = null
-                    executor.execute {
-                        try {
-                            val `in` = java.net.URL(imageURL).openStream()
-                            image = BitmapFactory.decodeStream(`in`)
-
-                            // Only for making changes in UI
-                            handler.post {
-                                eventImage.setImageBitmap(image)
-                            }
-                        }
-                        catch (e: Exception) {
-                            e.printStackTrace()
-                        }
-                    }
+                    val item = CarouselItem(title!!,description!!,imgUrl!!)
+                    carouselItems.add(item)
                 }
+                carouselAdapter.notifyDataSetChanged()
             }
             .addOnFailureListener { exception ->
-                Log.w("HomeFragment", "Error getting documents: ", exception)
+                Toast.makeText(context,"Couldn't fetch event data",Toast.LENGTH_SHORT).show()
+                val title="couldn't load events"
+                val description=" "
+                val imgUrl="https://placehold.co/100x80/png?text=Couldnt+Load+Events"
+
+                val item = CarouselItem(title!!,description!!,imgUrl!!)
+                carouselItems.add(item)
+                carouselAdapter.notifyDataSetChanged()
+
             }
     }
     private fun changeFragment(fragment: Fragment){
