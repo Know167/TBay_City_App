@@ -1,23 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.TBayCity" parent="Theme.AppCompat.Light.NoActionBar">
-
+    <style name="Base.Theme.TBayCity" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
     <style name="Theme.TBayCity" parent="Base.Theme.TBayCity" />
 
 
     <style name="Theme.TBayCity.NoActionBar">
-        <item name="buttonStyle">@style/CustomButton</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <!-- Custom button style -->
-    <style name="CustomButton" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/black</item>
-        <item name="cornerRadius">30dp</item>
-        <item name="android:textColor">@android:color/white</item>
-    </style>
+
     <style name="Theme.TBayCity.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.TBayCity.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
