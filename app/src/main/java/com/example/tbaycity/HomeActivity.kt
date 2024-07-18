@@ -17,8 +17,13 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_home)
+
         bottomNavigationView = findViewById(R.id.bottomNavView)
         framelayout = findViewById(R.id.frame_layout)
+        if (savedInstanceState == null) {
+            changeFragment(HomeFragment())
+        }
+
         bottomNavigationView.setOnItemSelectedListener {item->
             when(item.itemId){
                 R.id.navigation_home -> changeFragment(HomeFragment())
