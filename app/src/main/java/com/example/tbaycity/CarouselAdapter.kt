@@ -1,37 +1,36 @@
-package com.example.tbaycity.adapters
+package com.example.tbaycity
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tbaycity.R
+import com.bumptech.glide.Glide
 
-class CarouselAdapter(private val context: Context) {
-//    RecyclerView.Adapter<CarouselAdapter.CarouselViewHolder>() {
-//
-//    private val images = arrayOf(R.drawable.image1, R.drawable.image2)
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarouselViewHolder {
-//        val view = LayoutInflater.from(context).inflate(R.layout.item_carousel, parent, false)
-//        return CarouselViewHolder(view)
-//    }
-//
-//    override fun onBindViewHolder(holder: CarouselViewHolder, position: Int) {
-//        val imageRes = images[position]
-//        holder.bind(imageRes)
-//    }
-//
-//    override fun getItemCount(): Int {
-//        return images.size
-//    }
-//
-//    inner class CarouselViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        private val imageView: ImageView = itemView.findViewById(R.id.imageView)
-//
-//        fun bind(imageRes: Int) {
-//            imageView.setImageResource(imageRes)
-//        }
-//    }
+
+class CarouselAdapter( var carouselList: List<CarouselItem>) :
+    RecyclerView.Adapter<CarouselAdapter.CarouselViewHolder>() {
+//    var onItemClickListener: OnItemClickListener? = null
+class CarouselViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    var image: ImageView = itemView.findViewById(R.id.image)
+    var title: TextView=itemView.findViewById(R.id.title)
+    var description: TextView=itemView.findViewById(R.id.description)
+}
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarouselViewHolder {
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.carousel_item, parent, false)
+        return CarouselViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: CarouselViewHolder, position: Int) {
+        val item=carouselList[position]
+        holder.title.text = item.title
+        holder.description.text = item.description
+        Glide.with(holder.image.context).load(item.imgUrl).centerCrop().into(holder.image)
+    }
+
+    override fun getItemCount(): Int {
+        return carouselList.size
+    }
 }
