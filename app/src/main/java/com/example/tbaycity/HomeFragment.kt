@@ -18,19 +18,6 @@ import com.google.firebase.auth.FirebaseAuth
 
 
 
-// storing events data from the firestore
-data class Event(
-    val eventImageURL: String? = null,
-    val date: com.google.firebase.Timestamp? = null,
-    val title: String? = null,
-    val description: String? = null,
-    val location: String? = null,
-    val contactNumber: String? = null,
-    val blogURL: String? = null,
-    val startTimeEndTime: String? = null,
-    val image: Bitmap? = null,
-)
-
 class HomeFragment : Fragment() {
     private  lateinit var auth: FirebaseAuth
     private lateinit var viewallservice:TextView
@@ -70,3 +57,52 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity,CityServices::class.java)
             startActivity(intent)
         }
+
+        carouselRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        carouselAdapter = CarouselAdapter(carouselItems)
+        carouselRecyclerView.adapter = carouselAdapter
+
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(carouselRecyclerView)
+        fetchCarouselItems()
+
+        return view
+    }
+    private fun fetchCarouselItems(){
+        firestore.collection("events")
+            .limit(5)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val title=document.getString("title")
+                    val description=document.getString("description")
+                    val imgUrl=document.getString("eventImageURL")
+
+                    val item = CarouselItem(title!!,description!!,imgUrl!!)
+                    carouselItems.add(item)
+                }
+                carouselAdapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(context,"Couldn't fetch event data",Toast.LENGTH_SHORT).show()
+                val title="couldn't load events"
+                val description=" "
+                val imgUrl="https://placehold.co/100x80/png?text=Couldnt+Load+Events"
+
+                val item = CarouselItem(title!!,description!!,imgUrl!!)
+                carouselItems.add(item)
+                carouselAdapter.notifyDataSetChanged()
+
+            }
+    }
+    private fun changeFragment(fragment: Fragment){
+        val fragmentManager = parentFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout,fragment)
+        fragmentTransaction.commit()
+    }
+    private fun moveToNewActivity(currentActivity: Activity, targetActivity: Class<out Activity>) {
+        val intent = Intent(currentActivity, targetActivity)
+        startActivity(intent)
+    }
+}
