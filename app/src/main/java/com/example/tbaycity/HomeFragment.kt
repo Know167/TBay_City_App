@@ -70,6 +70,7 @@ class HomeFragment : Fragment() {
     }
     private fun fetchCarouselItems(){
         firestore.collection("events")
+            .orderBy("date", com.google.firebase.firestore.Query.Direction.DESCENDING)
             .limit(5)
             .get()
             .addOnSuccessListener { documents ->
