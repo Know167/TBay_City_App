@@ -8,7 +8,18 @@
     android:gravity="center"
     android:padding="18dp"
     android:background="@android:color/white"
+    android:id="@+id/signup_layout"
     tools:context=".SignUpActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+<!--Linear layout for scrollview -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <!-- Container for left-aligned elements -->
     <LinearLayout
@@ -69,58 +80,127 @@
         android:layout_marginBottom="16dp"
         android:gravity="start"/>
 
-    <EditText
-        android:id="@+id/signup_email"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="Email"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        android:drawableStart="@drawable/ic_email"
-        android:drawablePadding="16dp"
-        android:background="@drawable/edit_text_background"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:fontFamily="@font/poppinsregular"
+        android:layout_height="70dp"
+
         android:layout_marginBottom="16dp"
-        android:textSize="14sp"/>
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signup_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:hint="@string/name"
+            android:drawableStart="@drawable/profile_logo"
+            android:drawablePadding="16dp"
+            android:background="@drawable/edit_text_background"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="16dp"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress"
+                android:hint="Email"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="16dp"
+                android:background="@drawable/edit_text_background"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:fontFamily="@font/poppinsregular"
 
-    <EditText
-        android:id="@+id/signup_password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="Password"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        android:drawableStart="@drawable/ic_pass"
-        android:drawablePadding="16dp"
-        android:background="@drawable/edit_text_background"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:inputType="textPassword"
-        android:fontFamily="@font/poppinsregular"
-        android:layout_marginBottom="16dp"
-        android:textSize="14sp"/>
-
-    <EditText
-        android:id="@+id/signup_confirm_password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="Confirm Password"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        android:drawableStart="@drawable/ic_pass"
-        android:drawablePadding="16dp"
-        android:background="@drawable/edit_text_background"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:inputType="textPassword"
-        android:fontFamily="@font/poppinsregular"
-        android:textSize="14sp"
-        android:layout_marginBottom="24dp"/>
+                android:textSize="14sp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-    <Button
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="16dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/black"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:hint="Password"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_pass"
+                android:drawablePadding="16dp"
+                android:background="@drawable/edit_text_background"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:fontFamily="@font/poppinsregular"
+                android:textSize="14sp"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="16dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/black"
+
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_cpassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:hint="@string/confirm_password"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_pass"
+                android:drawablePadding="16dp"
+                android:background="@drawable/edit_text_background"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:fontFamily="@font/poppinsregular"
+                android:textSize="14sp"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile Image"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/poppinsbold"
+                android:textColor="@color/black"
+                android:layout_weight="1"/>
+            <ImageView
+                android:id="@+id/signup_profileimg"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/profile_image"
+                android:src="@drawable/profile_logo"/>
+
+        </LinearLayout>
+        <Button
         android:id="@+id/signup_btn"
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -128,6 +208,7 @@
         android:background="@drawable/loginbuttonbg"
         android:paddingTop="30dp"
         android:text="SIGN UP"
+
         android:textColor="@android:color/white" />
 
         <TextView
@@ -140,5 +221,6 @@
             android:layout_gravity="center"
 
             />
-
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>
