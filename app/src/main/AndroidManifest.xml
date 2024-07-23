@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+<!--    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />-->
+<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+<!--    <uses-permission android:name="android.permission.CAMERA" />-->
+<!--    <uses-feature android:name="android.hardware.camera" />-->
+<!--    <uses-feature android:name="android.hardware.camera.autofocus" />-->
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,9 +21,10 @@
         android:roundIcon="@drawable/city_logo_transparent"
         android:screenOrientation="sensorPortrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TBayCity"
+        android:theme="@style/Theme.TBayCity.NoActionBar"
         tools:ignore="DiscouragedApi"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        >
         <activity
             android:name=".CityServices"
             android:exported="false" />
@@ -21,7 +32,7 @@
             android:name=".HomeActivity"
             android:exported="true"
             android:label="@string/title_activity_home"
-            android:theme="@style/Theme.TBayCity.NoActionBar"></activity>
+            />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
@@ -37,6 +48,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="com.example.tbaycity.SignUpActivity"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/file_paths"/>
+        </provider>
     </application>
 
 </manifest>
