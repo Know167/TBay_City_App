@@ -70,28 +70,25 @@ class HomeFragment : Fragment() {
     }
     private fun fetchCarouselItems(){
         firestore.collection("events")
+            .orderBy("date", com.google.firebase.firestore.Query.Direction.DESCENDING)
             .limit(5)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    val title=document.getString("title")
-                    val description=document.getString("description")
-                    val imgUrl=document.getString("eventImageURL")
-
-                    val item = CarouselItem(title!!,description!!,imgUrl!!)
+                    val item = CarouselItem(title=document.data["title"].toString(),
+                        description = document.data["description"].toString(),
+                        imgUrl = document.data["eventImageURL"].toString(),
+                        date = document.data["date"] as com.google.firebase.Timestamp,
+                        location = document.data["location"].toString(),
+                        contactNumber = document.data["contactNumber"].toString(),
+                        blogURL = document.data["blogURL"].toString(),
+                        startTimeEndTime = document.data["startTimeEndTime"].toString())
                     carouselItems.add(item)
                 }
                 carouselAdapter.notifyDataSetChanged()
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(context,"Couldn't fetch event data",Toast.LENGTH_SHORT).show()
-                val title="couldn't load events"
-                val description=" "
-                val imgUrl="https://placehold.co/100x80/png?text=Couldnt+Load+Events"
-
-                val item = CarouselItem(title!!,description!!,imgUrl!!)
-                carouselItems.add(item)
-                carouselAdapter.notifyDataSetChanged()
 
             }
     }
