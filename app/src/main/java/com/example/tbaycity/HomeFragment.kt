@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.auth.FirebaseAuth
 
@@ -27,8 +28,10 @@ class HomeFragment : Fragment() {
     private val carouselItems = mutableListOf<CarouselItem>()
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -36,6 +39,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         auth = FirebaseAuth.getInstance()
         val  view:View = inflater.inflate(R.layout.fragment_home, container, false)
         viewallservice = view.findViewById(R.id.viewAllService)

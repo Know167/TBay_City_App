@@ -25,7 +25,7 @@
                 android:textSize="25sp"
                 android:layout_weight="1"
                 android:gravity="start"
-                android:fontFamily="@font/poppinsbold"
+                android:fontFamily="@font/poppinssemibold"
                 android:text="@string/thunder_bay"/>
             <ImageButton
 
@@ -53,19 +53,36 @@
             android:fontFamily="@font/poppinsbold"
 
             />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/hi"
+                android:paddingStart="2dp"
+                />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello Saurav"
-            android:textSize="20sp"
-            android:fontFamily="sans-serif-black"
-
+            android:text="Saurav Patel"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppinsmedium"
+            android:paddingStart="10dp"
             />
+
+
+        </LinearLayout>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="Search"
+            android:paddingHorizontal="10dp"
+            android:paddingTop="15dp"
+            android:drawablePadding="20dp"
             android:drawableStart="@drawable/searchicon"
 
             android:background="@drawable/searchbarbackground"/>
@@ -91,7 +108,7 @@
                 android:text="ViewAll"
                 android:gravity="end"
                 android:layout_weight="1"
-                android:fontFamily="@font/poppinsbold"
+                android:fontFamily="@font/poppinsregular"
                 android:layout_marginTop="20dp"
                 />
         </LinearLayout>
@@ -111,7 +128,7 @@
             <ImageButton
                 android:background="@drawable/roundcorner"
                 android:layout_width="160dp"
-                android:layout_height="130dp"
+                android:layout_height="160dp"
                 android:src="@drawable/trashicon"
 
                 />
@@ -121,7 +138,7 @@
                     android:text="Trash Management"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/poppinsbold"
+                    android:fontFamily="@font/poppinsregular"
                     />
             </LinearLayout>
             <LinearLayout
@@ -134,7 +151,7 @@
             <ImageButton
 
                 android:layout_width="160dp"
-                android:layout_height="130dp"
+                android:layout_height="160dp"
                 android:src="@drawable/constructionicon"
 
                 android:background="@drawable/roundcorner2"
@@ -145,7 +162,7 @@
                     android:text="Road Problems"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/poppinsbold"/>
+                    android:fontFamily="@font/poppinsregular"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -164,7 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Upcoming Events"
-                android:fontFamily="@font/poppinsbold"
+                android:fontFamily="@font/poppinssemibold"
 
                 android:layout_weight="1"
                 android:gravity="start"
@@ -175,7 +192,7 @@
                 android:layout_weight="1"
                 android:text="View All"
                 android:gravity="end"
-                android:fontFamily="@font/poppinsbold"
+                android:fontFamily="@font/poppinsregular"
 
                 />
 
@@ -186,7 +203,8 @@
             android:layout_width="match_parent"
             android:layout_height="196dp"
             android:clipChildren="false"
-            android:clipToPadding="false" />
+            android:clipToPadding="false"
+            android:layout_marginTop="5dp"/>
 
     </LinearLayout>
     </LinearLayout>
