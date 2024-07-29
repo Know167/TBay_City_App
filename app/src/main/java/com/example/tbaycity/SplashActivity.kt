@@ -26,18 +26,18 @@ class SplashActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.splash_activity)
 
-        loading = findViewById(R.id.loadingbar)
-        loading.visibility = View.VISIBLE
+//        loading = findViewById(R.id.loadingbar)
+//        loading.visibility = View.VISIBLE
         auth = FirebaseAuth.getInstance()
 
         Thread {
-            while (progressStatus < 100) {
-                progressStatus += 1
-                handler.post {
-                    loading.progress = progressStatus
-                }
-                Thread.sleep(10) // Simulate a time-consuming task
-            }
+//            while (progressStatus < 100) {
+//                progressStatus += 1
+//                handler.post {
+//                    loading.progress = progressStatus
+//                }
+//                Thread.sleep(10) // Simulate a time-consuming task
+//            }
 
             checkUserAuthentication()
         }.start()
@@ -57,16 +57,16 @@ class SplashActivity : AppCompatActivity() {
     private fun launchLogin() {
         handler.postDelayed({
             val intent = Intent(this, LoginActivity::class.java)
-            loading.visibility = View.GONE
+//            loading.visibility = View.GONE
             startActivity(intent)
             finish() // Optional: Close current activity to prevent going back
-        }, 100)
+        }, 1000)
     }
 
     private fun navigateToHome() {
         handler.postDelayed({
             val intent = Intent(this, HomeActivity::class.java)
-            loading.visibility = View.GONE
+//            loading.visibility = View.GONE
             startActivity(intent)
             finish() // Optional: Close current activity to prevent going back
         }, 100)

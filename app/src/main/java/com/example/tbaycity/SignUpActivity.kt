@@ -1,5 +1,6 @@
 package com.example.tbaycity
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -19,7 +20,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
-
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var emailField: EditText
@@ -64,7 +64,7 @@ class SignUpActivity : AppCompatActivity() {
         profileImageField = findViewById(R.id.signup_profileimg)
         signupBtn = findViewById(R.id.signup_btn)
         loginText = findViewById(R.id.login)
-
+        var loadingAlert = LoadingAlert(this)
         imageUri = createImageUri()
 
         profileImageField.setOnClickListener {
@@ -72,6 +72,7 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         signupBtn.setOnClickListener {
+
             val email = emailField.text.toString()
             val password = passwordField.text.toString()
             val confirmPassword = confirmPasswordField.text.toString()
@@ -82,12 +83,26 @@ class SignUpActivity : AppCompatActivity() {
                 emailField.error = "Email cannot be empty"
             } else if (password.isEmpty()) {
                 passwordField.error = "Password cannot be empty"
-            } else if (confirmPassword.isEmpty()) {
+            }
+            else if(password.length <= 6){
+                passwordField.error = "Password with length less than 7 is not accepted"
+            }
+            else if (confirmPassword.isEmpty()) {
                 confirmPasswordField.error = "Confirm Password cannot be empty"
             } else if (password != confirmPassword) {
                 confirmPasswordField.error = "Passwords do not match"
             } else {
-                createAccount(name, email, password)
+                loadingAlert.startAlertDialog()
+                createAccount(name, email, password) { success ->
+                    loadingAlert.dismissAlertDialog()
+                    if (success) {
+                        val intent = Intent(this, HomeActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(baseContext, "Sign Up failed.", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
 
@@ -97,37 +112,35 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun createAccount(name: String, email: String, password: String) {
+    private fun createAccount(name: String, email: String, password: String, callback: (Boolean) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
-
                     val userId = user?.uid
-                    if(userId!=null){
+                    if (userId != null) {
                         val documentReference = db.collection("Users").document(userId.toString())
                         val userData = HashMap<String, Any>()
                         userData["userName"] = name
                         userData["userEmail"] = email
-                        Log.d("username",userData.toString())
+                        Log.d("username", userData.toString())
                         uploadImageToStorage(userId.toString()) { success ->
                             if (success) {
                                 documentReference.set(userData).addOnSuccessListener {
-                                    Toast.makeText(baseContext, "Sign Up successful.", Toast.LENGTH_SHORT).show()
-                                    val intent = Intent(this, HomeActivity::class.java)
-                                    startActivity(intent)
-                                    finish()
+                                    callback(true)
+                                }.addOnFailureListener {
+                                    callback(false)
                                 }
                             } else {
-                                Toast.makeText(baseContext, "Sign Up failed.", Toast.LENGTH_SHORT).show()
+                                callback(false)
                             }
                         }
-                    }
-                   else{
-                       Log.d("Connection","Not Internet Connection")
+                    } else {
+                        callback(false)
+                        Log.d("Connection", "No Internet Connection")
                     }
                 } else {
-                    Toast.makeText(baseContext, "Sign Up failed.", Toast.LENGTH_SHORT).show()
+                    callback(false)
                 }
             }
     }
