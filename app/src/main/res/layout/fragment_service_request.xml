@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ServiceRequestFragment">
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Request Service"
+            android:fontFamily="@font/poppinsbold"
+            android:textSize="35sp"
+            android:textColor="@color/black"/>
+        <LinearLayout
+            android:layout_width="305dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:showDividers="middle"
+            android:orientation="vertical">
+            <Spinner
+
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/request_type"
+                android:background="#d8d8d9"
+
+                />
+            <Spinner
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/request_service"
+                android:background="#d8d8d9"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:background="#d8d8d9"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

@@ -19,27 +19,6 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp">
 
-            <LinearLayout
-                android:layout_marginTop="50dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="25sp"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:fontFamily="@font/poppinsbold"
-                    android:text="@string/thunder_bay"/>
-                <ImageButton
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:id="@+id/profileIcon"
-                    android:contentDescription="@string/profileimage"
-                    android:src="@drawable/usericon"/>
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -20,9 +20,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 
 class HomeFragment : Fragment() {
-    private  lateinit var auth: FirebaseAuth
-    private lateinit var db: FirebaseFirestore
-    private lateinit var storage: FirebaseStorage
+//    private  lateinit var auth: FirebaseAuth
+//    private lateinit var db: FirebaseFirestore
+//    private lateinit var storage: FirebaseStorage
     private lateinit var viewallservice:TextView
     private lateinit var carouselRecyclerView: RecyclerView
     private lateinit var carouselAdapter: CarouselAdapter
@@ -38,24 +38,24 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        auth = FirebaseAuth.getInstance()
-        storage = FirebaseStorage.getInstance()
+//        auth = FirebaseAuth.getInstance()
+//        storage = FirebaseStorage.getInstance()
         val  view:View = inflater.inflate(R.layout.fragment_home, container, false)
         viewallservice = view.findViewById(R.id.viewAllService)
 
         carouselRecyclerView = view.findViewById(R.id.carousel_recycler_view)
 
-        val profileIcon = view.findViewById<ImageButton>(R.id.profileIcon)
-        downloadImage(profileIcon)
-        profileIcon.setOnClickListener{
-//            findNavController().navigate(R.id.navigation_dashboard)
+//        val profileIcon = view.findViewById<ImageButton>(R.id.profileIcon)
+//        downloadImage(profileIcon)
+//        profileIcon.setOnClickListener{
+////            findNavController().navigate(R.id.navigation_dashboard)
+////
+////            changeFragment(ProfileFragment())
+//            auth.signOut()
+//            activity?.let {  moveToNewActivity(it, LoginActivity::class.java)}
 //
-//            changeFragment(ProfileFragment())
-            auth.signOut()
-            activity?.let {  moveToNewActivity(it, LoginActivity::class.java)}
-
-
-        }
+//
+//        }
         viewallservice.setOnClickListener{
             val intent = Intent(activity,CityServices::class.java)
             startActivity(intent)
@@ -105,16 +105,16 @@ class HomeFragment : Fragment() {
         val intent = Intent(currentActivity, targetActivity)
         startActivity(intent)
     }
-    private fun downloadImage(profileIcon:ImageButton){
-        val userId = auth.currentUser?.uid?:return
-        val storageRef = storage.reference.child("users/$userId/profile.jpg")
-
-        storageRef.downloadUrl.addOnSuccessListener { uri ->
-            Glide.with(this)
-                .load(uri)
-                .into(profileIcon);
-        }.addOnFailureListener {
-            Toast.makeText(context, "Failed to load profile image", Toast.LENGTH_SHORT).show()
-        }
-    }
+//    private fun downloadImage(profileIcon:ImageButton){
+//        val userId = auth.currentUser?.uid?:return
+//        val storageRef = storage.reference.child("users/$userId/profile.jpg")
+//
+//        storageRef.downloadUrl.addOnSuccessListener { uri ->
+//            Glide.with(this)
+//                .load(uri)
+//                .into(profileIcon);
+//        }.addOnFailureListener {
+//            Toast.makeText(context, "Failed to load profile image", Toast.LENGTH_SHORT).show()
+//        }
+//    }
 }
