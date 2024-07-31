@@ -29,8 +29,10 @@ class HomeFragment : Fragment() {
     private val firestore = FirebaseFirestore.getInstance()
     private val carouselItems = mutableListOf<CarouselItem>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -38,8 +40,9 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        auth = FirebaseAuth.getInstance()
-//        storage = FirebaseStorage.getInstance()
+
+        auth = FirebaseAuth.getInstance()
+
         val  view:View = inflater.inflate(R.layout.fragment_home, container, false)
         viewallservice = view.findViewById(R.id.viewAllService)
 
