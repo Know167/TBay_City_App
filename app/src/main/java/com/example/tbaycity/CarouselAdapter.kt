@@ -15,7 +15,6 @@ class CarouselAdapter( var carouselList: List<CarouselItem>) :
 class CarouselViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var image: ImageView = itemView.findViewById(R.id.image)
     var title: TextView=itemView.findViewById(R.id.title)
-    var description: TextView=itemView.findViewById(R.id.description)
 }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarouselViewHolder {
         val view: View =
@@ -26,7 +25,6 @@ class CarouselViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     override fun onBindViewHolder(holder: CarouselViewHolder, position: Int) {
         val item=carouselList[position]
         holder.title.text = item.title
-        holder.description.text = item.description
         Glide.with(holder.image.context).load(item.imgUrl).centerCrop().into(holder.image)
     }
 
