@@ -41,14 +41,16 @@
         android:layout_height="0dp">
     </FrameLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:background="#01529f"
+        android:background = "@drawable/navbg"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="70dp"
         android:elevation="8dp"
         android:id="@+id/bottomNavView"
         app:itemIconTint="@color/white"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
         app:menu="@menu/bottom_nav_menu"
         app:itemTextColor="@color/white"
+        android:paddingBottom="10dp"
         app:labelVisibilityMode="labeled"/>
 <!--        app:itemTextAppearanceActive="@style/BottomNavigationViewTextAppearance"-->
 <!--        app:itemTextAppearanceInactive="@style/BottomNavigationViewTextAppearance"-->
