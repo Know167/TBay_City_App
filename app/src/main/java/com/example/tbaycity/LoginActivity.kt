@@ -37,8 +37,9 @@ class LoginActivity : AppCompatActivity() {
         signupText = findViewById(R.id.signup);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
+        var loadingAlert = LoadingAlert(this)
         loginBtn.setOnClickListener {
+
             val email = emailField.text.toString();
             val password = passwordField.text.toString();
             if (email.isEmpty()){
@@ -52,10 +53,17 @@ class LoginActivity : AppCompatActivity() {
             else{
 
                 firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener { task->
+                    loadingAlert.startAlertDialog()
                     if(task.isSuccessful){
                         Toast.makeText(this,"Login Successfull",Toast.LENGTH_LONG).show()
                         val intent = Intent(this,HomeActivity::class.java)
                         startActivity(intent)
+                        loadingAlert.dismissAlertDialog()
+                        finish()
+                    }
+                    else{
+                        loadingAlert.dismissAlertDialog()
+                        Toast.makeText(this,"Email or Password is wrong",Toast.LENGTH_LONG).show()
                     }
                 }
             }

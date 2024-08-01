@@ -28,6 +28,8 @@
     <string name="profile_image">Profile Image</string>
     <string name="upload">Upload</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="events">Events</string>
+    <string name="services">Services</string>
 
 
 </resources>

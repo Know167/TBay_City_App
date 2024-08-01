@@ -22,4 +22,9 @@
         android:name="com.example.tbaycity.NotificationFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/navigation_servies"
+        android:name="com.example.tbaycity.Service_Fragment"
+        android:label="Servies"
+        tools:layout="@layout/fragment_service_"/>
 </navigation>
