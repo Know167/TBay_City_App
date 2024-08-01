@@ -84,7 +84,7 @@ class SignUpActivity : AppCompatActivity() {
             } else if (password.isEmpty()) {
                 passwordField.error = "Password cannot be empty"
             }
-            else if(password.length <= 6){
+            else if(password.length < 7){
                 passwordField.error = "Password with length less than 7 is not accepted"
             }
             else if (confirmPassword.isEmpty()) {

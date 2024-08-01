@@ -79,4 +79,14 @@ class HomeActivity : AppCompatActivity() {
             Toast.makeText(this, "Failed to load profile image", Toast.LENGTH_SHORT).show()
         }
     }
+    override fun onBackPressed() {
+        val fragmentManager = supportFragmentManager
+        if (fragmentManager.backStackEntryCount > 0) {
+            // If there are fragments in the back stack, pop the back stack
+            fragmentManager.popBackStack()
+        } else {
+            // If no fragments in the back stack, proceed with the default back press action
+            super.onBackPressed()
+        }
+    }
 }

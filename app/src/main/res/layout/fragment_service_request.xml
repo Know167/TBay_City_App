@@ -42,10 +42,19 @@
                 android:background="#d8d8d9"
                 />
             <TextView
+                android:id="@+id/service_description"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="20dp"
                 android:background="#d8d8d9"/>
+            <Button
+                android:id="@+id/submit_request_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white"
+                android:text="Submit Request"
+                android:background="@color/black"/>
         </LinearLayout>
     </LinearLayout>
 
