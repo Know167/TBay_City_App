@@ -83,14 +83,17 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-
         android:layout_marginBottom="16dp"
+        app:hintEnabled="false"
+
         >
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
+            android:textColorHint="@color/black"
             android:id="@+id/signup_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="text"
+            android:textColor="@color/black"
             android:hint="@string/name"
             android:drawableStart="@drawable/profile_logo"
             android:drawablePadding="16dp"
@@ -103,8 +106,9 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginBottom="16dp"
+            app:hintEnabled="false"
             >
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/signup_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -130,8 +134,9 @@
             android:layout_marginBottom="16dp"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/black"
+            app:hintEnabled="false"
             >
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/signup_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -156,9 +161,10 @@
             android:layout_marginBottom="16dp"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/black"
+            app:hintEnabled="false"
 
             >
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/signup_cpassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
