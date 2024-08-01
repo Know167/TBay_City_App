@@ -1,17 +1,14 @@
 package com.example.tbaycity
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.Gravity
-import android.view.View
+import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.GridView
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,15 +16,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.google.firebase.auth.FirebaseAuth
-
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
-
-
-
 class SignUpActivity : AppCompatActivity() {
-    private lateinit var progressBar: ProgressBar
+
     private lateinit var emailField: EditText
     private lateinit var passwordField: EditText
     private lateinit var confirmPasswordField: EditText
@@ -70,19 +64,15 @@ class SignUpActivity : AppCompatActivity() {
         profileImageField = findViewById(R.id.signup_profileimg)
         signupBtn = findViewById(R.id.signup_btn)
         loginText = findViewById(R.id.login)
-
+        var loadingAlert = LoadingAlert(this)
         imageUri = createImageUri()
 
-        val layout: LinearLayout = findViewById(R.id.signup_layout)
-        progressBar = ProgressBar(this, null, android.R.attr.progressBarStyleLarge)
-        val params = LinearLayout.LayoutParams(100, 100)
-        params.gravity = Gravity.CENTER
-        layout.addView(progressBar, params)
         profileImageField.setOnClickListener {
             showImagePickerDialog()
         }
 
         signupBtn.setOnClickListener {
+
             val email = emailField.text.toString()
             val password = passwordField.text.toString()
             val confirmPassword = confirmPasswordField.text.toString()
@@ -93,12 +83,26 @@ class SignUpActivity : AppCompatActivity() {
                 emailField.error = "Email cannot be empty"
             } else if (password.isEmpty()) {
                 passwordField.error = "Password cannot be empty"
-            } else if (confirmPassword.isEmpty()) {
+            }
+            else if(password.length <= 6){
+                passwordField.error = "Password with length less than 7 is not accepted"
+            }
+            else if (confirmPassword.isEmpty()) {
                 confirmPasswordField.error = "Confirm Password cannot be empty"
             } else if (password != confirmPassword) {
                 confirmPasswordField.error = "Passwords do not match"
             } else {
-                createAccount(name, email, password)
+                loadingAlert.startAlertDialog()
+                createAccount(name, email, password) { success ->
+                    loadingAlert.dismissAlertDialog()
+                    if (success) {
+                        val intent = Intent(this, HomeActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(baseContext, "Sign Up failed.", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
 
@@ -108,34 +112,35 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun createAccount(name: String, email: String, password: String) {
-        progressBar.visibility= View.VISIBLE
+    private fun createAccount(name: String, email: String, password: String, callback: (Boolean) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     val userId = user?.uid
-                    val documentReference = db.collection("Users").document(userId.toString())
-                    val userData = HashMap<String, Any>()
-                    userData["userName"] = name
-                    userData["userEmail"] = email
-
-                    uploadImageToStorage(userId.toString()) { success ->
-                        if (success) {
-                            documentReference.set(userData).addOnSuccessListener {
-                                Toast.makeText(baseContext, "Sign Up successful.", Toast.LENGTH_SHORT).show()
-                                val intent = Intent(this, HomeActivity::class.java)
-                                startActivity(intent)
-                                progressBar.visibility = View.GONE
-                                finish()
+                    if (userId != null) {
+                        val documentReference = db.collection("Users").document(userId.toString())
+                        val userData = HashMap<String, Any>()
+                        userData["userName"] = name
+                        userData["userEmail"] = email
+                        Log.d("username", userData.toString())
+                        uploadImageToStorage(userId.toString()) { success ->
+                            if (success) {
+                                documentReference.set(userData).addOnSuccessListener {
+                                    callback(true)
+                                }.addOnFailureListener {
+                                    callback(false)
+                                }
+                            } else {
+                                callback(false)
                             }
-                        } else {
-                            Toast.makeText(baseContext, "Sign Up failed.", Toast.LENGTH_SHORT).show()
                         }
+                    } else {
+                        callback(false)
+                        Log.d("Connection", "No Internet Connection")
                     }
                 } else {
-                    progressBar.visibility = View.GONE
-                    Toast.makeText(baseContext, "Sign Up failed.", Toast.LENGTH_SHORT).show()
+                    callback(false)
                 }
             }
     }
