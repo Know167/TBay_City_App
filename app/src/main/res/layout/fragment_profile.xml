@@ -21,7 +21,6 @@
             android:gravity="center"
             android:textSize="30sp"
             android:fontFamily="@font/poppinssemibold"
-
             />
 
         <TextView

@@ -175,10 +175,10 @@
                                 android:src="@mipmap/electricity"/>
 
                             <TextView
-                                android:id="@+id/hydro_text"
+                                android:id="@+id/electricity_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Hydro"
+                                android:text="Electricity"
                                 android:fontFamily="@font/poppinsbold"
                                 android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
@@ -209,6 +209,64 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Water"
+                                android:fontFamily="@font/poppinsbold"
+                                android:layout_gravity="center_horizontal"/>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/hydro_icon"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:cardCornerRadius="20dp"
+                        android:layout_margin="12dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="90dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_horizontal"
+                                android:contentDescription="TODO"
+                                android:src="@drawable/water"/>
+
+                            <TextView
+                                android:id="@+id/hydro_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hydro"
+                                android:fontFamily="@font/poppinsbold"
+                                android:layout_gravity="center_horizontal"/>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/neighbour_icon"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:cardCornerRadius="20dp"
+                        android:layout_margin="12dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="90dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_horizontal"
+                                android:contentDescription="TODO"
+                                android:src="@drawable/water"/>
+
+                            <TextView
+                                android:id="@+id/neighbour_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Neighbour"
                                 android:fontFamily="@font/poppinsbold"
                                 android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
