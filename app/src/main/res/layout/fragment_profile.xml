@@ -21,8 +21,7 @@
             android:text="Profile"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:marginBottom="24dp"/>
+            android:layout_gravity="center_horizontal"/>
 
         <!-- Profile Picture and Edit Icon -->
         <RelativeLayout
