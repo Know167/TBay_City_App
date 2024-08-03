@@ -22,7 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Objects
 
 
-class ServiceRequestFragment : Fragment() {
+class  ServiceRequestFragment : Fragment() {
     private lateinit var requestType:Spinner
     private lateinit var requestService:Spinner
     private lateinit var serviceDescription:EditText
