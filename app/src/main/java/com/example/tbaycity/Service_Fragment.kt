@@ -15,6 +15,8 @@ class Service_Fragment: Fragment() ,View.OnClickListener {
     private lateinit var roadIcon:CardView
     private lateinit var electrictyIcon:CardView
     private lateinit var waterIcon:CardView
+    private  lateinit var gasIcon: CardView
+    private lateinit var neighbourIcon: CardView
     private lateinit var trashText:TextView
     private lateinit var roadText:TextView
     private lateinit var electrictyText:TextView
@@ -36,6 +38,8 @@ class Service_Fragment: Fragment() ,View.OnClickListener {
         roadIcon = view.findViewById(R.id.road_icon)
         electrictyIcon = view.findViewById(R.id.electricity_icon)
         waterIcon = view.findViewById(R.id.water_icon)
+        gasIcon=view.findViewById(R.id.gas_icon)
+        neighbourIcon=view.findViewById(R.id.neighbour_icon)
         trashText = view.findViewById(R.id.trash_text)
         roadText = view.findViewById(R.id.road_text)
         electrictyText = view.findViewById(R.id.hydro_text)
@@ -44,6 +48,8 @@ class Service_Fragment: Fragment() ,View.OnClickListener {
         roadIcon.setOnClickListener(this)
         electrictyIcon.setOnClickListener(this)
         waterIcon.setOnClickListener(this)
+        gasIcon.setOnClickListener(this)
+        neighbourIcon.setOnClickListener(this)
         return view
     }
 
@@ -70,6 +76,16 @@ class Service_Fragment: Fragment() ,View.OnClickListener {
             }
             R.id.water_icon ->{
                 category = "Water"
+                bundle.putString(inputString,category)
+                changeFragment(ServiceRequestFragment(),bundle)
+            }
+            R.id.gas_icon ->{
+                category = "Gas"
+                bundle.putString(inputString,category)
+                changeFragment(ServiceRequestFragment(),bundle)
+            }
+            R.id.neighbour_icon ->{
+                category = "Neighbour"
                 bundle.putString(inputString,category)
                 changeFragment(ServiceRequestFragment(),bundle)
             }

@@ -17,13 +17,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
-
+import android.widget.ImageView
 
 class HomeFragment : Fragment() {
-//    private  lateinit var auth: FirebaseAuth
-//    private lateinit var db: FirebaseFirestore
-//    private lateinit var storage: FirebaseStorage
     private lateinit var viewallservice:TextView
+    private lateinit var homeTrashIcon:ImageView
+    private lateinit var homeRoadIcon:ImageView
     private lateinit var carouselRecyclerView: RecyclerView
     private lateinit var carouselAdapter: CarouselAdapter
     private val firestore = FirebaseFirestore.getInstance()
@@ -40,15 +39,30 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        var bundle=Bundle()
+
         val  view:View = inflater.inflate(R.layout.fragment_home, container, false)
         viewallservice = view.findViewById(R.id.viewAllService)
         name_tag= view.findViewById(R.id.name_tag)
         getUserName()
+        homeTrashIcon= view.findViewById(R.id.home_trash_icon)
+        homeRoadIcon= view.findViewById(R.id.home_road_icon)
+        homeTrashIcon.setOnClickListener {
+            val category="Waste"
+            bundle.putString("category",category)
+            changeFragment(ServiceRequestFragment(),bundle)
+        }
+
+        homeRoadIcon.setOnClickListener {
+            val category="Road"
+            bundle.putString("category",category)
+            changeFragment(ServiceRequestFragment(),bundle)
+        }
         carouselRecyclerView = view.findViewById(R.id.carousel_recycler_view)
 
         viewallservice.setOnClickListener{
-            val intent = Intent(activity,CityServices::class.java)
-            startActivity(intent)
+
+            changeFragment(Service_Fragment(),bundle)
         }
 
         carouselRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -95,10 +109,12 @@ class HomeFragment : Fragment() {
 
             }
     }
-    private fun changeFragment(fragment: Fragment){
+    private fun changeFragment(fragment: Fragment, bundle:Bundle){
         val fragmentManager = parentFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
+        fragment.arguments=bundle
         fragmentTransaction.replace(R.id.frame_layout,fragment)
+        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
     private fun moveToNewActivity(currentActivity: Activity, targetActivity: Class<out Activity>) {

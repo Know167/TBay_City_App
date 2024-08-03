@@ -95,13 +95,14 @@
                 android:src="@drawable/description_icon"/>
             <EditText
                 android:inputType="textMultiLine"
+                android:lines="8"
                 android:id="@+id/service_description"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:paddingStart="60dp"
                 android:hint="Description"
                 android:paddingTop="20dp"
-                android:gravity="top"
+                android:gravity="top|start"
                 android:background="@drawable/spinner_round_corner"/>
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
             <Button
