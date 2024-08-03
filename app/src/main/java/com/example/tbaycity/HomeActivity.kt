@@ -40,8 +40,8 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener {item->
             when(item.itemId){
                 R.id.navigation_home -> changeFragment(HomeFragment())
-                R.id.navigation_notifications -> changeFragment(NotificationFragment())
-                R.id.navigation_dashboard -> changeFragment(ProfileFragment())
+                R.id.navigation_events -> changeFragment(EventFragment())
+                R.id.navigation_profile -> changeFragment(ProfileFragment())
                 R.id.navigation_services -> changeFragment(Service_Fragment())
         }
             true

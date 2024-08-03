@@ -10,18 +10,17 @@
         android:name="com.example.tbaycity.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
-
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_events"
+        android:name="com.example.tbaycity.EventFragment"
+        android:label="Event"
+        tools:layout="@layout/fragment_event" />
+    <fragment
+        android:id="@+id/navigation_profile"
         android:name="com.example.tbaycity.ProfileFragment"
-        android:label="@string/title_dashboard"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.tbaycity.NotificationFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/navigation_servies"
         android:name="com.example.tbaycity.Service_Fragment"
