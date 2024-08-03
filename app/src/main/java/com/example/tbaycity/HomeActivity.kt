@@ -40,8 +40,8 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener {item->
             when(item.itemId){
                 R.id.navigation_home -> changeFragment(HomeFragment())
-                R.id.navigation_notifications -> changeFragment(NotificationFragment())
-                R.id.navigation_dashboard -> changeFragment(ProfileFragment())
+                R.id.navigation_events -> changeFragment(EventFragment())
+                R.id.navigation_profile -> changeFragment(ProfileFragment())
                 R.id.navigation_services -> changeFragment(Service_Fragment())
         }
             true
@@ -77,6 +77,16 @@ class HomeActivity : AppCompatActivity() {
                 .into(profileIcon);
         }.addOnFailureListener {
             Toast.makeText(this, "Failed to load profile image", Toast.LENGTH_SHORT).show()
+        }
+    }
+    override fun onBackPressed() {
+        val fragmentManager = supportFragmentManager
+        if (fragmentManager.backStackEntryCount > 0) {
+            // If there are fragments in the back stack, pop the back stack
+            fragmentManager.popBackStack()
+        } else {
+            // If no fragments in the back stack, proceed with the default back press action
+            super.onBackPressed()
         }
     }
 }
