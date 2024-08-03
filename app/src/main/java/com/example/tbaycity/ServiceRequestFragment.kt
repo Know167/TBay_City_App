@@ -58,8 +58,8 @@ class ServiceRequestFragment : Fragment() {
         val roadServiceType = arrayOf("Urban Road Maintenance", "Rural Road Maintenance", "Highway Maintenance")
 
         // Arrays for "Hydro" category
-        val hydroRequestType = arrayOf("New Connection", "Billing Issues", "Power Outage", "Meter Reading", "Tariff Inquiry")
-        val hydroServiceType = arrayOf("Residential Hydro Service", "Commercial Hydro Service", "Industrial Hydro Service")
+        val gasRequestType = arrayOf("New Connection", "Billing Issues", "Gas Leak", "Meter Reading", "Tariff Inquiry")
+        val gasServiceType = arrayOf("Residential Gas Service", "Commercial Gas Service", "Industrial Gas Service")
 
 
         // Arrays for "Electricity" category
@@ -90,8 +90,8 @@ class ServiceRequestFragment : Fragment() {
                 "Water" -> {
                     populateSpinner(category,view,requestType,requestService,waterRequestType,waterServiceType)
                 }
-                "Hydro" -> {
-                    populateSpinner(category,view,requestType,requestService,hydroRequestType,hydroServiceType)
+                "Gas" -> {
+                    populateSpinner(category,view,requestType,requestService,gasRequestType,gasServiceType)
                 }
                 "Neighbour" -> {
                     populateSpinner(category,view,requestType,requestService,neighbourComplaintType,neighbourComplaintServiceType)
@@ -99,14 +99,6 @@ class ServiceRequestFragment : Fragment() {
             }
         }catch (e:Exception){
             Log.d("exception", e.toString())
-        }
-        if (category == "Waste") {
-            try {
-                populateSpinner(category,view,requestType,requestService,wasteRequestType,wasteServiceType)
-                }
-            catch (e:Exception){
-                Log.d("exception",e.toString())
-            }
         }
         // ===== Dynamic spinner code ends =====//
         submitBtn.setOnClickListener{
