@@ -29,7 +29,8 @@
             android:text="Welcome,"
             android:gravity="center"
             android:textSize="30sp"
-            android:fontFamily="@font/poppinsbold"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppinssemibold"
 
             />
         <LinearLayout
@@ -43,6 +44,7 @@
                 android:paddingStart="2dp"
                 />
         <TextView
+            android:id="@+id/name_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Saurav Patel"

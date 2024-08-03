@@ -1,23 +1,23 @@
 package com.example.tbaycity
 
 import android.app.Activity
+import android.content.Context
+import android.content.Context.MODE_APPEND
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.storage.FirebaseStorage
+
 
 class HomeFragment : Fragment() {
 //    private  lateinit var auth: FirebaseAuth
@@ -28,8 +28,7 @@ class HomeFragment : Fragment() {
     private lateinit var carouselAdapter: CarouselAdapter
     private val firestore = FirebaseFirestore.getInstance()
     private val carouselItems = mutableListOf<CarouselItem>()
-
-
+    private  lateinit var name_tag:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,25 +39,13 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//
-//        auth = FirebaseAuth.getInstance()
 
         val  view:View = inflater.inflate(R.layout.fragment_home, container, false)
         viewallservice = view.findViewById(R.id.viewAllService)
-
+        name_tag= view.findViewById(R.id.name_tag)
+        getUserName()
         carouselRecyclerView = view.findViewById(R.id.carousel_recycler_view)
 
-//        val profileIcon = view.findViewById<ImageButton>(R.id.profileIcon)
-//        downloadImage(profileIcon)
-//        profileIcon.setOnClickListener{
-////            findNavController().navigate(R.id.navigation_dashboard)
-////
-////            changeFragment(ProfileFragment())
-//            auth.signOut()
-//            activity?.let {  moveToNewActivity(it, LoginActivity::class.java)}
-//
-//
-//        }
         viewallservice.setOnClickListener{
             val intent = Intent(activity,CityServices::class.java)
             startActivity(intent)
@@ -74,6 +61,16 @@ class HomeFragment : Fragment() {
 
         return view
     }
+
+    private fun getUserName() {
+        val sh: SharedPreferences = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE)
+        val name = sh.getString("name","Default Value")
+        sh.getString("name","x")?.let { Log.d("Shared", it) }
+        name_tag.text = name
+
+
+    }
+
     private fun fetchCarouselItems(){
         firestore.collection("events")
             .orderBy("date", com.google.firebase.firestore.Query.Direction.DESCENDING)
