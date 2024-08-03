@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:id="@+id/service_layout"
     android:background="@color/white"
-    tools:context=".Service_Fragment">
+    tools:context=".Service_Fragment"
+    android:layout_marginBottom="50dp">
 
     <LinearLayout
         android:layout_marginStart="20dp"
@@ -91,7 +92,8 @@
                         android:layout_marginTop="10dp"
                         android:background="@color/white"
                         android:columnCount="2"
-                        android:rowCount="2">
+                        android:rowCount="2"
+                        android:paddingBottom="50dp">
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/trash_icon"
