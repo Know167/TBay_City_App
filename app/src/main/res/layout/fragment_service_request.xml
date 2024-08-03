@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ServiceRequestFragment">
 
     <LinearLayout
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="20dp"
@@ -16,47 +17,94 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Request Service"
-            android:fontFamily="@font/poppinsbold"
-            android:textSize="35sp"
+            android:fontFamily="@font/poppinssemibold"
+            android:textSize="30sp"
             android:textColor="@color/black"/>
         <LinearLayout
-            android:layout_width="305dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_gravity="center"
             android:showDividers="middle"
             android:orientation="vertical">
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:elevation="5dp"
+                    android:paddingStart="20dp"
+                    android:src="@drawable/question_icon"/>
             <Spinner
-
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/request_type"
-                android:background="#d8d8d9"
-
+                android:background="@drawable/spinner_round_corner"
+                android:paddingStart="50dp"
                 />
-            <Spinner
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:elevation="5dp"
+                    android:src="@drawable/baseline_keyboard_arrow_down_24"
+                    android:paddingEnd="20dp"
+                    app:layout_anchor="@+id/request_type"
+                    app:layout_anchorGravity="end|center"
+                    app:layout_constraintEnd_toEndOf="@id/request_type" />
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:elevation="5dp"
+                android:paddingStart="20dp"
+                android:src="@drawable/service_icon"/>
+            <Spinner
+                android:paddingStart="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/request_service"
-                android:background="#d8d8d9"
+                android:background="@drawable/spinner_round_corner"
                 />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:elevation="5dp"
+                    android:src="@drawable/baseline_keyboard_arrow_down_24"
+                    android:paddingEnd="20dp"
+                    app:layout_anchor="@+id/request_service"
+                    app:layout_anchorGravity="end|center"
+                    app:layout_constraintEnd_toEndOf="@id/request_type" />
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/description_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:elevation="5dp"
+                android:paddingStart="20dp"
+                android:paddingTop="15dp"
+                android:src="@drawable/description_icon"/>
             <EditText
-
                 android:inputType="textMultiLine"
                 android:lines="8"
                 android:id="@+id/service_description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_height="200dp"
+                android:paddingStart="60dp"
                 android:hint="Description"
+                android:paddingTop="20dp"
                 android:gravity="top|start"
-                android:scrollbars="vertical"
-                android:background="#d8d8d9"
-                android:paddingLeft="16dp"
-                android:paddingTop="8dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="8dp"/>
+                android:background="@drawable/spinner_round_corner"/>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
             <Button
                 android:id="@+id/submit_request_button"
                 android:layout_width="match_parent"
@@ -64,7 +112,8 @@
                 android:layout_marginTop="20dp"
                 android:textColor="@color/white"
                 android:text="Submit Request"
-                android:background="@color/black"/>
+                android:background="@drawable/submit_btn_container"/>
+
         </LinearLayout>
     </LinearLayout>
 

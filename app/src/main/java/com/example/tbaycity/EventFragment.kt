@@ -1,5 +1,6 @@
 package com.example.tbaycity
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
@@ -39,10 +41,23 @@ class EventFragment : Fragment() {
         recyclerView = view.findViewById(R.id.event_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
         createEventRecyclerView()
+        val bgselected = ContextCompat.getDrawable(requireContext(),R.drawable.tab_selected_background)
+        val bgUnselected = ContextCompat.getDrawable(requireContext(),R.drawable.tab_unselected_background)
+        val txtColor1 = "white"
+        val bgColor2 = "#d9d9d9"
+        val txtColor2 = "black"
         eventBtn.setOnClickListener {
+            eventBtn.setBackground(bgselected)
+            eventBtn.setTextColor(Color.parseColor(txtColor1))
+            newsBtn.setBackground(bgUnselected)
+            newsBtn.setTextColor(Color.parseColor(txtColor2))
             createEventRecyclerView()
         }
         newsBtn.setOnClickListener {
+            newsBtn.setBackground(bgselected)
+            newsBtn.setTextColor(Color.parseColor(txtColor1))
+            eventBtn.setBackground(bgUnselected)
+            eventBtn.setTextColor(Color.parseColor(txtColor2))
             createNewsRecyclerView()
         }
         return view

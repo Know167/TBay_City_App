@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.GridLayout.Spec
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
@@ -22,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Objects
 
 
-class  ServiceRequestFragment : Fragment() {
+class ServiceRequestFragment : Fragment() {
     private lateinit var requestType:Spinner
     private lateinit var requestService:Spinner
     private lateinit var serviceDescription:EditText
@@ -32,6 +33,7 @@ class  ServiceRequestFragment : Fragment() {
     private  lateinit var firebaseUser: FirebaseUser
     private lateinit var firestore: FirebaseFirestore
     private lateinit var currentUser: String
+    private lateinit var description_icon:ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -48,7 +50,20 @@ class  ServiceRequestFragment : Fragment() {
         requestService = view.findViewById(R.id.request_service)
         serviceDescription = view.findViewById(R.id.service_description)
         submitBtn = view.findViewById(R.id.submit_request_button)
+        description_icon = view.findViewById(R.id.description_icon)
         // ===== Dynamic spinner code starts from here =====//
+        //array of different categories//
+//        description_icon.visibility = View.VISIBLE
+//        serviceDescription.setOnFocusChangeListener{v,hasFocus ->
+//            if(hasFocus){
+//                description_icon.visibility = View.GONE
+//            }
+//            else{
+//                description_icon.visibility = View.VISIBLE
+//            }
+//
+//        }
+
         // Arrays for "Waste" category
         val wasteRequestType = arrayOf("Regular Waste Pickup","Recycling Services","Bulk Item Pickup","Hazardous Waste Disposal"," Street Cleaning")
         val wasteServiceType = arrayOf("Residential Waste Collection","Commercial Waste Collection","Recycling Collection")

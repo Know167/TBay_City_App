@@ -72,6 +72,7 @@ class LoginActivity : AppCompatActivity() {
             // Navigate to SignUpActivity
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }
