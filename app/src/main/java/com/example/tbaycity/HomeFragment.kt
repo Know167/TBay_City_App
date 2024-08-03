@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        auth = FirebaseAuth.getInstance()
+        //auth = FirebaseAuth.getInstance()
 
         val  view:View = inflater.inflate(R.layout.fragment_home, container, false)
         viewallservice = view.findViewById(R.id.viewAllService)
