@@ -49,9 +49,57 @@ class ServiceRequestFragment : Fragment() {
         serviceDescription = view.findViewById(R.id.service_description)
         submitBtn = view.findViewById(R.id.submit_request_button)
         // ===== Dynamic spinner code starts from here =====//
-        //array of different categories//
+        // Arrays for "Waste" category
         val wasteRequestType = arrayOf("Regular Waste Pickup","Recycling Services","Bulk Item Pickup","Hazardous Waste Disposal"," Street Cleaning")
         val wasteServiceType = arrayOf("Residential Waste Collection","Commercial Waste Collection","Recycling Collection")
+
+        // Arrays for "Road" category
+        val roadRequestType = arrayOf("Pothole Repair", "Streetlight Issue", "Road Construction", "Traffic Signal Issue", "Snow Removal")
+        val roadServiceType = arrayOf("Urban Road Maintenance", "Rural Road Maintenance", "Highway Maintenance")
+
+        // Arrays for "Hydro" category
+        val hydroRequestType = arrayOf("New Connection", "Billing Issues", "Power Outage", "Meter Reading", "Tariff Inquiry")
+        val hydroServiceType = arrayOf("Residential Hydro Service", "Commercial Hydro Service", "Industrial Hydro Service")
+
+
+        // Arrays for "Electricity" category
+        val electricityRequestType = arrayOf("Power Outage", "New Connection", "Billing Issues", "Meter Reading", "Energy Saving Tips")
+        val electricityServiceType = arrayOf("Residential Electricity Service", "Commercial Electricity Service", "Industrial Electricity Service")
+
+        // Arrays for "Water" category
+        val waterRequestType = arrayOf("Water Supply Issue", "Water Quality", "Billing Issues", "New Connection", "Leakage Report")
+        val waterServiceType = arrayOf("Residential Water Service", "Commercial Water Service", "Industrial Water Service")
+
+        // Arrays for "Neighbour Complaint" category
+        val neighbourComplaintType = arrayOf("Noise Complaint", "Property Maintenance", "Illegal Construction", "Animal Nuisance", "Parking Issues")
+        val neighbourComplaintServiceType = arrayOf("Residential Neighbour Issues")
+
+
+//        Switch to each category based on the category provided through bundle
+        try{
+            when (category) {
+                "Waste" -> {
+                    populateSpinner(category,view,requestType,requestService,wasteRequestType,wasteServiceType)
+                }
+                "Road" -> {
+                    populateSpinner(category,view,requestType,requestService,roadRequestType,roadServiceType)
+                }
+                "Electricity" -> {
+                    populateSpinner(category,view,requestType,requestService,electricityRequestType,electricityServiceType)
+                }
+                "Water" -> {
+                    populateSpinner(category,view,requestType,requestService,waterRequestType,waterServiceType)
+                }
+                "Hydro" -> {
+                    populateSpinner(category,view,requestType,requestService,hydroRequestType,hydroServiceType)
+                }
+                "Neighbour" -> {
+                    populateSpinner(category,view,requestType,requestService,neighbourComplaintType,neighbourComplaintServiceType)
+                }
+            }
+        }catch (e:Exception){
+            Log.d("exception", e.toString())
+        }
         if (category == "Waste") {
             try {
                 populateSpinner(category,view,requestType,requestService,wasteRequestType,wasteServiceType)
