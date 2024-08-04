@@ -2,6 +2,6 @@
     <style name="BottomNavigationViewTextAppearance" parent="TextAppearance.AppCompat.Caption">
         <item name="android:textAlignment">center</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">14sp</item> <!-- Adjust text size as needed -->
+        <item name="android:textSize">14sp</item><!-- Adjust text size as needed -->
     </style>
 </resources>
