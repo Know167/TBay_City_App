@@ -1,0 +1,10 @@
+<!-- res/drawable/nav_item_selected.xml -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:top="40dp" android:bottom="10dp" android:start="10dp" android:end="10dp" android:height="30dp" android:gravity="center_vertical">
+    <shape>
+        <solid android:color="#000000" />
+        <corners android:radius="20dp" />
+    </shape>
+</item>
+</layer-list>

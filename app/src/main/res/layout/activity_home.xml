@@ -63,6 +63,7 @@
         app:itemActiveIndicatorStyle="@android:color/transparent"
         app:menu="@menu/bottom_nav_menu"
         app:itemTextColor="@color/white"
-        app:labelVisibilityMode="labeled"/>
+        app:labelVisibilityMode="labeled"
+        app:itemBackground="@drawable/nav_item_background"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

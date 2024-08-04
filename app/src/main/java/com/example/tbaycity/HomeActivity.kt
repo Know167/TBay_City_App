@@ -51,6 +51,7 @@ class HomeActivity : AppCompatActivity() {
             myEdit.commit()
         }
         }
+        
         bottomNavigationView.setOnItemSelectedListener {item->
             when(item.itemId){
                 R.id.navigation_home -> changeFragment(HomeFragment())
