@@ -5,118 +5,141 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ProfileFragment"
-    android:id="@+id/navHome">
+    android:id="@+id/navHome"
+    android:paddingHorizontal="18dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
         <!-- Profile Title -->
         <TextView
-            android:id="@+id/profileTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Profile"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"/>
+            android:gravity="center"
+            android:textSize="30sp"
+            android:fontFamily="@font/poppinssemibold"
+            />
 
-        <!-- Profile Picture and Edit Icon -->
-        <RelativeLayout
+        <TextView
+            android:id="@+id/editimage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:text="Edit Profile Picture"
+            android:fontFamily="@font/poppinsbold"
+            android:layout_marginTop="20dp"/>
+        <!-- Profile Picture and Edit Icon -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profilelayout"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:id="@+id/profileImage"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@drawable/cityimg"
-            android:layout_centerInParent="true"
-            android:scaleType="centerCrop"
-            android:background="@drawable/roundcorner"/>
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/profile_image_container"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/editIcon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/ic_edit"
-            android:layout_alignBottom="@+id/profileImage"
-            android:layout_alignEnd="@+id/profileImage"
-            android:padding="8dp"
-            android:layout_margin="8dp"/>
-        </RelativeLayout>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Personal Details -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="32dp"
-            android:padding="8dp">
+            android:layout_marginTop="32dp">
+
+            <TextView
+                android:id="@+id/editPersonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Personal Details"
+                android:fontFamily="@font/poppinsbold"/>
+
 
             <!-- Name Field -->
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/roundcorner2"
-                android:padding="8dp"
-                android:layout_marginBottom="16dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/profile_logo"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="8dp"/>
-
-                <TextView
-                    android:id="@+id/userName"
+                android:layout_height="60dp"
+                android:inputType="textEmailAddress"
+                android:fontFamily="@font/poppinsregular"
+                app:hintEnabled="false"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="24dp">
+                <EditText
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Parth Bhanushalli"
-                    android:textSize="16sp"/>
-            </LinearLayout>
-
+                    android:layout_height="match_parent"
+                    android:hint="Name"
+                    android:textSize="14sp"
+                    android:textColorHint="@color/black"
+                    android:textColor="@color/black"
+                    android:drawableStart="@drawable/profile_logo"
+                    android:paddingHorizontal="20dp"
+                    android:drawablePadding="10dp"
+                    android:background="@drawable/edit_text_background"/>
+            </com.google.android.material.textfield.TextInputLayout>
             <!-- Email Field -->
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/roundcorner2"
-                android:padding="8dp"
-                android:layout_marginBottom="32dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_email"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="8dp"/>
-
-                <TextView
-                    android:id="@+id/userEmail"
+                android:layout_height="60dp"
+                android:inputType="textEmailAddress"
+                android:fontFamily="@font/poppinsregular"
+                app:hintEnabled="false"
+                android:layout_marginBottom="44dp">
+                <EditText
+                    android:id="@+id/profileEmail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="parth2809.pb@gmail.com"
-                    android:textSize="16sp"/>
-            </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:hint="Email"
+                    android:textSize="14sp"
+                    android:textColorHint="@color/black"
+                    android:textColor="@color/black"
+                    android:drawableStart="@drawable/ic_email"
+                    android:paddingHorizontal="20dp"
+                    android:drawablePadding="10dp"
+                    android:background="@drawable/edit_text_background"/>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <!-- Update Profile Button -->
         <Button
             android:id="@+id/updateProfileButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="UPDATE PROFILE"
-            android:background="#00539F"
+            android:background="@drawable/edit_text_background"
+            android:backgroundTint="#00539F"
             android:textColor="@android:color/white"
             android:padding="16dp"
             android:textSize="16sp"
             android:layout_gravity="center_horizontal"/>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/circularProgressIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            app:indicatorSize="56dp"
+            app:trackThickness="4dp"
+            app:indicatorColor="?attr/colorPrimary" />
     </LinearLayout>
 
 </FrameLayout>

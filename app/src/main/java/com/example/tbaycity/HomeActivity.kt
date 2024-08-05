@@ -1,21 +1,23 @@
 package com.example.tbaycity
 
+import android.R.attr.name
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView:BottomNavigationView
@@ -37,6 +39,19 @@ class HomeActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         storage = FirebaseStorage.getInstance()
+        getUserData(auth,firestore){
+            user -> user?.let {
+
+            val sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE)
+
+            val myEdit = sharedPreferences.edit()
+            Log.d("name",it.name)
+            myEdit.putString("name",it.name)
+            myEdit.putString("email",it.email)
+            myEdit.commit()
+        }
+        }
+        
         bottomNavigationView.setOnItemSelectedListener {item->
             when(item.itemId){
                 R.id.navigation_home -> changeFragment(HomeFragment())
@@ -50,14 +65,11 @@ class HomeActivity : AppCompatActivity() {
         val profileIcon = findViewById<ImageButton>(R.id.profileIcon)
         downloadImage(profileIcon)
         profileIcon.setOnClickListener{
-//            findNavController().navigate(R.id.navigation_dashboard)
-//
-//            changeFragment(ProfileFragment())
             auth.signOut()
+            User("","","")
             val i = Intent(this,LoginActivity::class.java)
             startActivity(i)
             finish()
-
 
         }
     }
@@ -87,6 +99,26 @@ class HomeActivity : AppCompatActivity() {
         } else {
             // If no fragments in the back stack, proceed with the default back press action
             super.onBackPressed()
+        }
+    }
+    fun getUserData(auth: FirebaseAuth,firestore: FirebaseFirestore,callback:(com.example.tbaycity.User?)->Unit){
+        val uid = auth.currentUser?.uid
+        val db = Firebase.firestore
+        if(uid.toString().isNotBlank()){
+            if (uid != null) {
+                db.collection("Users").document(uid).get().addOnSuccessListener{ document->
+                    if(document!=null && document.exists()){
+                        val userName = document.getString("userName")
+                        val userEmail = document.getString("userEmail")
+                        val user = User(uid.toString(),userName.toString(),userEmail.toString())
+                        callback(user)
+                    }
+                    else{
+                        callback(null)
+                    }
+
+                }
+            }
         }
     }
 }

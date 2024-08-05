@@ -42,7 +42,7 @@ class Service_Fragment: Fragment() ,View.OnClickListener {
         neighbourIcon=view.findViewById(R.id.neighbour_icon)
         trashText = view.findViewById(R.id.trash_text)
         roadText = view.findViewById(R.id.road_text)
-        electrictyText = view.findViewById(R.id.hydro_text)
+        electrictyText = view.findViewById(R.id.electricity_text)
         waterText = view.findViewById(R.id.water_text)
         trashIcon.setOnClickListener(this)
         roadIcon.setOnClickListener(this)
