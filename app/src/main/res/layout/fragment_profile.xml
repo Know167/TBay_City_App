@@ -17,10 +17,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Profile"
+            android:text="Your Profile"
             android:gravity="center"
             android:textSize="30sp"
+            android:textColor="@color/black"
             android:fontFamily="@font/poppinssemibold"
+
             />
 
         <TextView
@@ -131,15 +133,45 @@
             android:textSize="16sp"
             android:layout_gravity="center_horizontal"/>
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/circularProgressIndicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone"
-            app:indicatorSize="56dp"
-            app:trackThickness="4dp"
-            app:indicatorColor="?attr/colorPrimary" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="40dp"
+
+    >
+    <!-- SignOut Button -->
+    <Button
+        android:id="@+id/signOutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Out"
+        android:background="@drawable/edit_text_background"
+        android:backgroundTint="#00539F"
+        android:textColor="@android:color/white"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"/>
+
+    <Space
+        android:layout_width="16dp"
+        android:layout_height="wrap_content"/>
+    <!-- Delete Profile Button -->
+    <Button
+        android:id="@+id/deleteProfileButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete Profile"
+        android:layout_weight="1"
+        android:background="@drawable/edit_text_background"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:textColor="@android:color/white"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"/></LinearLayout>
+
+
     </LinearLayout>
 
 </FrameLayout>

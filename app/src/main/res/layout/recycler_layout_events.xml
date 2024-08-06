@@ -4,7 +4,7 @@
     android:layout_height="300dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_marginBottom="20dp">
+    android:layout_marginBottom="8dp">
     <LinearLayout
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
@@ -14,7 +14,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="30dp"
+            android:elevation="0dp">
         <ImageView
             android:id="@+id/event_image"
             android:scaleType="fitCenter"
@@ -25,15 +26,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:paddingHorizontal="10dp">
             <TextView
                 android:id="@+id/event_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/poppinsbold"
+                android:fontFamily="@font/poppinssemibold"
                 android:textColor="@color/black"
+                android:textSize="16sp"
                 android:text="@string/news_title"/>
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="wrap_content"/>
             <ImageView
                 android:id="@+id/event_detail_btn"
                 android:layout_width="wrap_content"
@@ -49,10 +56,11 @@
 <!--            android:text="@string/news_description"/>-->
         <TextView
             android:id="@+id/event_date"
-            android:layout_marginTop="3dp"
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date of the news"/>
+            android:text="Date of the news"
+            android:paddingHorizontal="10dp"
+            android:textSize="14sp"/>
     </LinearLayout>
 </LinearLayout>

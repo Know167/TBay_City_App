@@ -1,6 +1,7 @@
 package com.example.tbaycity
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -25,7 +26,12 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.splash_activity)
-
+        val serviceIntent = Intent(this, FirestoreForegroundService::class.java)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(serviceIntent)
+        } else {
+            startService(serviceIntent)
+        }
 //        loading = findViewById(R.id.loadingbar)
 //        loading.visibility = View.VISIBLE
         auth = FirebaseAuth.getInstance()

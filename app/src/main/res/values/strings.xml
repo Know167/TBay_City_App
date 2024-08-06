@@ -33,6 +33,8 @@
     <string name="news_description">News description</string>
     <string name="todo">TODO</string>
     <string name="news_title">News title</string>
+    <string name="channel_name">Events Channel</string>
+    <string name="channel_description">Notifications for new events</string>
 
 
 </resources>
