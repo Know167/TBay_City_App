@@ -93,21 +93,20 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:inputType="textPassword"
-        android:fontFamily="@font/poppinsregular"
-        app:hintEnabled="false"
+        android:layout_marginBottom="16dp"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/black"
-        android:layout_marginBottom="24dp">
+        app:hintEnabled="false"
+        >
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Password"
             android:textSize="14sp"
+            android:inputType="textPassword"
             android:textColorHint="@color/black"
             android:textColor="@color/black"
             android:drawableStart="@drawable/ic_pass"

@@ -49,6 +49,7 @@ class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
         name_tag= view.findViewById(R.id.name_tag)
         getUserName()
         viewallservice = view.findViewById(R.id.viewAllService)
+        viewallevents = view.findViewById(R.id.viewallevents)
 //        getUserName()
         homeTrashIcon= view.findViewById(R.id.home_trash_icon)
         homeRoadIcon= view.findViewById(R.id.home_road_icon)
@@ -69,7 +70,7 @@ class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
 
             changeFragment(Service_Fragment(),bundle)
         }
-        viewallservice.setOnClickListener{
+        viewallevents.setOnClickListener{
             changeFragment(EventFragment(),bundle)
         }
         carouselRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

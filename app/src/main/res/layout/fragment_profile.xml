@@ -7,7 +7,11 @@
     tools:context=".ProfileFragment"
     android:id="@+id/navHome"
     android:paddingHorizontal="18dp">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="50dp"
+    android:scrollbars="none">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -171,7 +175,10 @@
         android:textSize="16sp"
         android:layout_gravity="center_horizontal"/></LinearLayout>
 
-
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="70dp"/>
     </LinearLayout>
 
+</ScrollView>
 </FrameLayout>
