@@ -87,7 +87,7 @@
                         android:layout_height="wrap_content"
                         android:rowCount="6"
                         android:columnCount="2"
-
+                        android:paddingBottom="50dp"
                         >
                         <androidx.cardview.widget.CardView
                             android:id="@+id/trash_icon"

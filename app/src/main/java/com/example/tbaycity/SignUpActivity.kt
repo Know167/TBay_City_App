@@ -124,10 +124,14 @@ class SignUpActivity : AppCompatActivity() {
                         userData["userName"] = name
                         userData["userEmail"] = email
                         Log.d("username", userData.toString())
-                        uploadImageToStorage(userId.toString()) { success ->
-                            if (success) {
+
+                        uploadImageToStorage(userId.toString()) { imageUrl ->
+                            if (imageUrl != null) {
+                                userData["profileImageUrl"] = imageUrl
                                 documentReference.set(userData).addOnSuccessListener {
-                                    callback(true)
+                                    saveUserDataToSharedPreferences(name, email, imageUrl) {
+                                        callback(true)
+                                    }
                                 }.addOnFailureListener {
                                     callback(false)
                                 }
@@ -144,6 +148,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
     }
+
 
     private fun createImageUri(): Uri {
         val image = File(filesDir, "camera_photos.png")
@@ -163,16 +168,28 @@ class SignUpActivity : AppCompatActivity() {
         builder.show()
     }
 
-    private fun uploadImageToStorage(userId: String, callback: (Boolean) -> Unit) {
+    private fun uploadImageToStorage(userId: String, callback: (String?) -> Unit) {
         val storageRef = storage.reference.child("users/$userId/profile.jpg")
         storageRef.putFile(imageUri)
             .addOnSuccessListener {
-                callback(true)
-                Toast.makeText(this, "Image uploaded successfully.", Toast.LENGTH_SHORT).show()
+                storageRef.downloadUrl.addOnSuccessListener { uri ->
+                    callback(uri.toString())
+                }.addOnFailureListener {
+                    callback(null)
+                }
             }
             .addOnFailureListener {
-                callback(false)
+                callback(null)
                 Toast.makeText(this, "Image upload failed.", Toast.LENGTH_LONG).show()
             }
+    }
+    private fun saveUserDataToSharedPreferences(name: String, email: String, imageUrl: String, callback: () -> Unit) {
+        val sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE)
+        val myEdit = sharedPreferences.edit()
+        myEdit.putString("name", name)
+        myEdit.putString("email", email)
+        myEdit.putString("profileImageUrl", imageUrl)
+        myEdit.apply()
+        callback()
     }
 }

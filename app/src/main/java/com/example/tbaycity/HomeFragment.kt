@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import android.widget.ImageView
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener  {
     private lateinit var viewallservice:TextView
     private lateinit var homeTrashIcon:ImageView
     private lateinit var homeRoadIcon:ImageView
@@ -28,8 +28,10 @@ class HomeFragment : Fragment() {
     private val firestore = FirebaseFirestore.getInstance()
     private val carouselItems = mutableListOf<CarouselItem>()
     private  lateinit var name_tag:TextView
+    private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedPreferences = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
     }
 
@@ -42,9 +44,11 @@ class HomeFragment : Fragment() {
         var bundle=Bundle()
 
         val  view:View = inflater.inflate(R.layout.fragment_home, container, false)
-        viewallservice = view.findViewById(R.id.viewAllService)
+
         name_tag= view.findViewById(R.id.name_tag)
         getUserName()
+        viewallservice = view.findViewById(R.id.viewAllService)
+//        getUserName()
         homeTrashIcon= view.findViewById(R.id.home_trash_icon)
         homeRoadIcon= view.findViewById(R.id.home_road_icon)
         homeTrashIcon.setOnClickListener {
@@ -75,13 +79,23 @@ class HomeFragment : Fragment() {
 
         return view
     }
-
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, p1: String?) {
+        if (p1 == "name") {
+            getUserName()
+        }
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val loadingAlert = LoadingAlert(requireActivity())
+        loadingAlert.startAlertDialog()
+        getUserName()
+        loadingAlert.dismissAlertDialog()
+    }
     private fun getUserName() {
         val sh: SharedPreferences = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE)
         val name = sh.getString("name","Default Value")
         sh.getString("name","x")?.let { Log.d("Shared", it) }
         name_tag.text = name
-
 
     }
 
