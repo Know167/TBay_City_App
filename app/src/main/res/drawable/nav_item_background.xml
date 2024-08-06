@@ -1,17 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/nav_item_background.xml -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="true">
-        <shape android:shape="rectangle">
-
-            <solid android:color="@color/black" />
-            <corners android:radius="100dp"/>
-        </shape>
-    </item>
-    <item>
-        <shape android:shape="rectangle">
-
-            <solid android:color="@android:color/transparent" />
-
-        </shape>
-    </item>
+    <item android:drawable="@drawable/nav_item_selected" android:state_checked="true"/>
+    <item android:drawable="@drawable/nav_item_normal" android:state_checked="false"/>
 </selector>

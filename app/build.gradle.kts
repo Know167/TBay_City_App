@@ -57,10 +57,10 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation (libs.glide)
+    implementation(libs.firebase.messaging)
     annotationProcessor (libs.compiler)
     implementation(libs.firebase.storage)
     implementation(libs.firebase.storage.ktx)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -1,56 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity"
-    android:orientation="vertical">
-    <Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="25sp"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:fontFamily="@font/poppinsbold"
-                android:text="@string/thunder_bay"/>
-            <ImageButton
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:id="@+id/profileIcon"
-                android:contentDescription="@string/profileimage"
-                android:src="@drawable/usericon"/>
-        </LinearLayout>
+    tools:context=".HomeActivity">
 
-    </Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="25sp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:fontFamily="@font/poppinsbold"
+                    android:text="@string/thunder_bay"/>
+
+                <ImageButton
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/profileIcon"
+                    android:contentDescription="@string/profileimage"
+                    android:src="@drawable/usericon"/>
+
+            </LinearLayout>
+
+        </Toolbar>
+
+    </LinearLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:id="@+id/frame_layout"
-        android:layout_height="0dp">
-    </FrameLayout>
+        android:layout_marginTop="110dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:background="#01529f"
+        android:background="@drawable/navbg"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="90dp"
         android:elevation="8dp"
         android:id="@+id/bottomNavView"
+        android:layout_gravity="bottom"
         app:itemIconTint="@color/white"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
         app:menu="@menu/bottom_nav_menu"
         app:itemTextColor="@color/white"
-        app:labelVisibilityMode="labeled"/>
-<!--        app:itemTextAppearanceActive="@style/BottomNavigationViewTextAppearance"-->
-<!--        app:itemTextAppearanceInactive="@style/BottomNavigationViewTextAppearance"-->
+        app:labelVisibilityMode="labeled"
+        app:itemBackground="@drawable/nav_item_background"/>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -79,10 +79,37 @@
         android:fontFamily="@font/poppinsbold"
         android:layout_marginBottom="16dp"
         android:gravity="start"/>
+        <!-- Profile Picture and Edit Icon -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profilelayout"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:id="@+id/signup_profileimg"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/roundcorner2"
+                android:src="@drawable/profile_logo"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/editIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="16dp"
         app:hintEnabled="false"
 
@@ -100,11 +127,12 @@
             android:background="@drawable/edit_text_background"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
+            android:textSize="14sp"
             />
     </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:layout_marginBottom="16dp"
             app:hintEnabled="false"
             >
@@ -130,7 +158,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:layout_marginBottom="16dp"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/black"
@@ -157,8 +185,8 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="36dp"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/black"
             app:hintEnabled="false"
@@ -183,35 +211,13 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Profile Image"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:gravity="center_horizontal"
-                android:fontFamily="@font/poppinsbold"
-                android:textColor="@color/black"
-                android:layout_weight="1"/>
-            <ImageView
-                android:id="@+id/signup_profileimg"
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/profile_image"
-                android:src="@drawable/profile_logo"/>
 
-        </LinearLayout>
         <Button
         android:id="@+id/signup_btn"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/loginbuttonbg"
+        android:background="@drawable/loginbtn"
         android:paddingTop="30dp"
         android:text="SIGN UP"
 
