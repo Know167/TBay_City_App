@@ -21,6 +21,7 @@ import android.widget.ImageView
 
 class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener  {
     private lateinit var viewallservice:TextView
+    private lateinit var viewallevents:TextView
     private lateinit var homeTrashIcon:ImageView
     private lateinit var homeRoadIcon:ImageView
     private lateinit var carouselRecyclerView: RecyclerView
@@ -68,7 +69,9 @@ class HomeFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListe
 
             changeFragment(Service_Fragment(),bundle)
         }
-
+        viewallservice.setOnClickListener{
+            changeFragment(EventFragment(),bundle)
+        }
         carouselRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         carouselAdapter = CarouselAdapter(carouselItems)
         carouselRecyclerView.adapter = carouselAdapter

@@ -64,7 +64,7 @@ class EventFragment : Fragment() {
     }
 
     // Function to parse date string to Date object
-    fun parseDateString(dateStr: String): Date? {
+    private fun parseDateString(dateStr: String): Date? {
         val dateFormat = SimpleDateFormat("MMMM d, yyyy hh:mm a", Locale.ENGLISH)
         val regex = Regex("Posted on .*?, (.*) (\\d+), (\\d+) (\\d+:\\d+ [APM]{2})")
         val match = regex.find(dateStr)
@@ -95,6 +95,8 @@ class EventFragment : Fragment() {
     private fun attachNewsData() {
         db = FirebaseFirestore.getInstance()
         db.collection("news")
+            .orderBy("datetime",com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .limit(10)
             .get()
             .addOnSuccessListener { documents ->
                 val newsItems = ArrayList<News>()
